@@ -10,11 +10,13 @@ FetchContent_Declare(SFML
     GIT_TAG 2.6.x)
 FetchContent_MakeAvailable(SFML)
 
+find_package(OpenAL REQUIRED)
+
 file(GLOB_RECURSE HEADERS "src/*.hpp")
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 
 add_executable(main ${SOURCES} ${HEADERS})
-target_link_libraries(main PRIVATE sfml-graphics sfml-window sfml-audio sfml-system)
+target_link_libraries(main PRIVATE sfml-graphics sfml-window sfml-audio sfml-system OpenAL::OpenAL)
 target_compile_features(main PRIVATE cxx_std_17)
 
 if(WIN32)
